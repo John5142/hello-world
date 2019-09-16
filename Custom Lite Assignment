@@ -1,0 +1,393 @@
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+^!m::
+ExitApp
+Return
+
+;AESC: Ctrl+Shift+1
+;ERI: Ctrl+Shift+2
+;kW: Ctrl+Shift+3
+;Lincus: Ctrl+Shift+4
+;Nexant: Ctrl+Shift+5
+;TRC: Ctrl+Shift+6
+
+ChromePageWait(x,y)
+	{
+	Loop
+		{
+		PixelGetColor, Loaded, %x%, %y%
+		if Loaded = 0xDC9D00
+		break
+		}
+	}
+
+AddOpportunityTeam()
+	{
+	send ^f
+	sleep 150
+	send +Opportunity Team Help
+	sleep 150
+	SendInput, {Esc}
+	sleep 150
+	SendInput, {Shift Down}
+	SendInput, {Tab}{Tab}{Tab} 
+	SendInput, {Shift Up}
+	sleep 150
+	SendInput, {Enter}
+	sleep 300
+	}
+
+InputOpportunityMember(Contact)
+	{
+	SendInput, {Tab}{Tab}{Tab}{Tab} ;Skip to second line to edit Partner user cell
+	Sleep 150
+	Send +P ;Partner user
+	Sleep 150
+	SendInput, {Tab}
+	Sleep 150
+	Send +%Contact%
+	Sleep 150
+	SendInput, {Tab}{Tab} 
+	Sleep 150
+	Send +T
+	Sleep 150
+	SendInput, {Tab}
+	Sleep 150
+	Send +R
+	SendInput, {Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab} ;tab over to save
+	sleep 150
+	SendInput, {Enter}
+	Sleep 300
+	}
+
+DoubleSave()
+	{
+	SendInput, {Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}{Tab}
+	sleep 150
+	SendInput, {Enter} 
+	}
+
+Chatter()
+	{
+	send ^f
+	sleep 150
+	send +Hide Feed
+	send ^f
+	sleep 150
+	send +Post
+	sleep 150
+	SendInput, {Esc}
+	sleep 150
+	SendInput, {Tab}{Tab}
+	sleep 150
+	}
+
+AllWithAccess()
+	{
+	send ^f
+	sleep 150
+	send +Hide Feed
+	send ^f
+	sleep 150
+	send +Post
+	sleep 150
+	SendInput, {Esc}
+	sleep 150
+	SendInput, {Tab}{Tab}{Tab}{Tab}
+	sleep 150
+	SendInput, {Enter}
+	sleep 150
+	SendInput, {Down}
+	sleep 150
+	SendInput, {Enter}
+	}
+
+
+PreInstallAssignmentMessage()
+	{
+	send +Please review this post-install custom lite project.
+	}
+
+Sleep_Short()
+	{
+	Sleep 100
+	}
+
+Sleep_Medium()
+	{
+	sleep 500
+	}
+
+Sleep_Long()
+	{
+	Sleep 3000
+	}
+
+
+;AESC Pre-Install
+^+1::
+ImageSearch,ix_Cloud,iy_Cloud,0,0,1272,1023,C:\Users\JS1I\Documents\AutoHotKey\SalesforceCloud.PNG
+sleep 150
+AddOpportunityTeam()
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+sleep 500
+InputOpportunityMember("Jeff Seto")
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+Sleep 500
+DoubleSave()
+SLeep 300
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+Sleep 500
+
+;chatter
+Chatter()
+Sleep 1500
+Send +Hi AESC, 
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+PreInstallAssignmentMessage()
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +Thanks
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +@Jeff Seto
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+SendInput, {Space}
+Sleep_Medium()
+Send +@Sarah Sturdy
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+AllWithAccess()
+
+return
+
+
+;ERI Pre-Install
+^+2::
+
+ImageSearch,ix_Cloud,iy_Cloud,0,0,1272,1023,C:\Users\JS1I\Documents\AutoHotKey\SalesforceCloud.PNG
+sleep 150
+AddOpportunityTeam()
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+sleep 500
+InputOpportunityMember("Ethan Clifford")
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+Sleep 500
+
+;chatter
+Chatter()
+Sleep 1500
+Send +Hi ERI, 
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+PreInstallAssignmentMessage()
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +Thanks
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +@Ethan Clifford
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+AllWithAccess()
+
+return
+
+;kW Pre-Install
+^+3::
+
+ImageSearch,ix_Cloud,iy_Cloud,0,0,1272,1023,C:\Users\JS1I\Documents\AutoHotKey\SalesforceCloud.PNG
+sleep 150
+AddOpportunityTeam()
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+sleep 500
+InputOpportunityMember("Sean Harleman")
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+Sleep 500
+
+;chatter
+Chatter()
+Sleep 1500
+Send +Hi kW, 
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+PreInstallAssignmentMessage()
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +Thanks
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +@Ben Hoffman
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+SendInput, {Space}
+Sleep_Medium()
+Send +@Sean Harleman
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+AllWithAccess()
+
+return
+
+;Lincus Pre-Install
+^+4::
+ImageSearch,ix_Cloud,iy_Cloud,0,0,1272,1023,C:\Users\JS1I\Documents\AutoHotKey\SalesforceCloud.PNG
+sleep 150
+AddOpportunityTeam()
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+sleep 500
+InputOpportunityMember("Yeshpal Gupta")
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+Sleep 500
+
+;chatter
+Chatter()
+Sleep 1500
+Send +Hi Lincus, 
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+PreInstallAssignmentMessage()
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +Thanks
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +@Arash Kialashaki
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+SendInput, {Space}
+Sleep_Medium()
+Send +@Yeshpal Gupta
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+AllWithAccess()
+
+
+return
+
+;Nexant Pre-Install
+^+5::
+ImageSearch,ix_Cloud,iy_Cloud,0,0,1272,1023,C:\Users\JS1I\Documents\AutoHotKey\SalesforceCloud.PNG
+sleep 150
+AddOpportunityTeam()
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+sleep 500
+InputOpportunityMember("Kevin Simmons")
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+Sleep 500
+DoubleSave()
+SLeep 300
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+Sleep 500
+
+;chatter
+Chatter()
+Sleep 1500
+Send +Hi Nexant, 
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+PreInstallAssignmentMessage()
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +Thanks
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +@Kevin Simmons
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+AllWithAccess()
+
+return
+
+
+;TRC Pre-Install
+^+6::
+
+ImageSearch,ix_Cloud,iy_Cloud,0,0,1272,1023,C:\Users\JS1I\Documents\AutoHotKey\SalesforceCloud.PNG
+sleep 150
+AddOpportunityTeam()
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+sleep 500
+InputOpportunityMember("Marc Theobald")
+ChromePageWait(ix_Cloud+12, iy_Cloud+8)
+Sleep 500
+
+;chatter
+Chatter()
+Sleep 1500
+Send +Hi TRC, 
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+PreInstallAssignmentMessage()
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +Thanks
+Sleep_Medium()
+SendInput, {Enter}
+Sleep_Medium()
+Send +@Rahul Pusapati
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+SendInput, {Space}
+Sleep_Medium()
+Send +@Marc Theobald
+Sleep_Long()
+SendInput, {Enter}
+Sleep_Medium()
+AllWithAccess()
+
+return
+
+;Budget category and stage change
+^+7::
+
+send ^f
+sleep 150
+send +Assigned to Post-Install Tech Review
+sleep 150
+SendInput, {Esc}
+sleep 150
+SendInput, {Tab}
+sleep 150
+SendInput, {Enter}
+sleep 150
+ImageSearch,ix_CheckBox,iy_CheckBox,0,0,1272,1023,C:\Users\JS1I\Documents\AutoHotKey\CheckBox.PNG
+sleep 150
+MouseClick, left,  ix_CheckBox+5, iy_CheckBox+5
+sleep 150
+SendInput, {Enter}
+sleep 150
+SendInput, {Enter}
+
+return
